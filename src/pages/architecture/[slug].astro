@@ -53,13 +53,13 @@ const suivant = index < cartes.length - 1 ? cartes[index + 1] : null;
 
   {
     precedent
-      ? <a href={`{base}/architecture/${precedent.id}`}>← {precedent.data.title}</a>
+      ? <a href={`${base}/architecture/${precedent.id}`}>← {precedent.data.title}</a>
       : <span></span>
   }
 
   {
     suivant
-      ? <a href={`{base}/architecture/${suivant.id}`}>{suivant.data.title} →</a>
+      ? <a href={`${base}/architecture/${suivant.id}`}>{suivant.data.title} →</a>
       : <span></span>
   }
 
