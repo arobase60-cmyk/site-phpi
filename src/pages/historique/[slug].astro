@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+import Sidebar from "../../components/Sidebar.astro";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("historique");
+
+  return articles.map((article) => ({
+    params: {
+      slug: article.id,
+    },
+    props: {
+      article,
+    },
+  }));
+}
+
+const { article } = Astro.props;
+const articles = await getCollection("historique");
+
+articles.sort((a, b) => a.data.order - b.data.order);
+
+const { Content } = await render(article);
+
+
+---
+
+<Layout title={article.data.title}>
+
+<div class="doc">
+
+  <Sidebar
+  articles={articles}
+  titre="Historique"
+  baseUrl="historique"
+  actif={article.id}
+/>
+
+  <main class="content">
+    <h1>{article.data.title}</h1>
+<p class="article-description">
+  {article.data.description}
+</p>
+    <Content />
+
+    <p>
+      <a href="/historique">← Retour à l'historique</a>
+    </p>
+
+  </main>
+
+</div>
+
+</Layout>

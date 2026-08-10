@@ -1,0 +1,37 @@
+---
+interface Props {
+  articles: any[];
+  titre: string;
+  baseUrl: string;
+  actif: string;
+}
+
+const { articles, titre, baseUrl, actif } = Astro.props;
+---
+
+<aside class="sidebar">
+
+<h3>{titre}</h3>
+
+<ul>
+
+{
+  articles.map((article) => (
+
+    <li>
+
+      <a
+        href={`/${baseUrl}/${article.id}`}
+        class={article.id === actif ? "active" : ""}
+      >
+        {article.data.title}
+      </a>
+
+    </li>
+
+  ))
+}
+
+</ul>
+
+</aside>

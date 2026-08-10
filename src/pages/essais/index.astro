@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const essais = await getCollection("essais");
+essais.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Essais">
+
+<div class="page-header">
+    <h1>Essais</h1>
+
+    <p>
+        Cette rubrique présente les différentes procédures d'essais réalisées
+        lors du développement et de la validation du PHPI.
+    </p>
+</div>
+
+<div class="cards">
+
+{
+    essais.map((essai) => (
+
+        <a class="card" href={`/essais/${essai.id}`}>
+
+            <img
+                src={essai.data.hero ?? "/images/photo-a-venir.png"}
+                alt={essai.data.title}
+                class="card-image"
+            />
+
+            <h2>{essai.data.title}</h2>
+
+            <p>{essai.data.description}</p>
+
+        </a>
+
+    ))
+}
+
+</div>
+
+</Layout>

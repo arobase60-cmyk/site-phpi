@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const essais = await getCollection("essais");
+
+  return essais.map((essai) => ({
+    params: { slug: essai.id },
+    props: { essai },
+  }));
+}
+
+const { essai } = Astro.props;
+const { Content } = await render(essai);
+
+const essais = await getCollection("essais");
+essais.sort((a, b) => a.data.order - b.data.order);
+
+const index = essais.findIndex(e => e.id === essai.id);
+
+const precedent = index > 0 ? essais[index - 1] : null;
+const suivant = index < essais.length - 1 ? essais[index + 1] : null;
+---
+
+<Layout title={essai.data.title}>
+
+<p>
+  <a href="/essais">← Retour aux essais</a>
+</p>
+
+<h1>{essai.data.title}</h1>
+
+<img
+  src={essai.data.hero ?? "/images/photo-a-venir.png"}
+  alt={essai.data.title}
+  class="fiche-image"
+/>
+
+<div class="fiche">
+
+  <Content />
+
+</div>
+
+<nav class="fiche-nav">
+
+  {
+    precedent
+      ? <a href={`/essais/${precedent.id}`}>← {precedent.data.title}</a>
+      : <span></span>
+  }
+
+  {
+    suivant
+      ? <a href={`/essais/${suivant.id}`}>{suivant.data.title} →</a>
+      : <span></span>
+  }
+
+</nav>
+
+</Layout>

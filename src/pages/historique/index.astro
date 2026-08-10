@@ -1,0 +1,114 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const evenements = await getCollection("historique");
+evenements.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Historique du PHPI">
+
+<div class="page-header">
+  <h1>Historique du PHPI</h1>
+
+  <p>
+    Cette chronologie retrace les principales étapes du développement du
+    <strong>Poste Hybride à Procédés Informatiques (PHPI)</strong>,
+    depuis les premières réflexions jusqu'à la première mise en service.
+  </p>
+</div>
+
+<div class="timeline">
+
+  {
+    evenements.map((event) => (
+
+      <article class="timeline-item">
+
+        <div class="timeline-date">
+          {event.data.date}
+        </div>
+
+        <div class="timeline-content">
+
+          
+          <h2>{event.data.title}</h2>
+
+          
+          <a href={`/historique/${event.id}`} class="timeline-link">
+            Lire la suite →
+          </a>
+
+        </div>
+
+      </article>
+
+    ))
+  }
+
+</div>
+
+<section class="today">
+
+  <h2>Aujourd'hui</h2>
+
+  <p>
+    Après avoir participé au développement du Poste Hybride à Procédés Informatiques (PHPI) jusqu’à sa première mise en service en 2018, j’ai souhaité conserver et transmettre la mémoire technique de ce projet. Il me paraît également important de rappeler que, si le PHPI existe aujourd’hui, c’est en grande partie grâce à Franck, responsable de l’atelier de qualification des matériels, qui a porté les projets du CRIS puis du PHPI et leur a permis de prendre forme.
+  </p>
+
+  <p>
+    Ce site rassemble les documents, photographies, schémas et informations
+    conservés au cours de plusieurs années de développement afin d'en transmettre
+    l'histoire et les connaissances techniques.
+  </p>
+
+  <p>
+    Il constitue une base documentaire destinée à préserver un savoir-faire
+    technique et à faciliter la compréhension du système PHPI.
+  </p>
+
+</section>
+
+<style>
+.timeline{
+    max-width:900px;
+    margin:auto;
+}
+
+.timeline-item{
+    display:flex;
+    gap:2rem;
+    margin-bottom:3rem;
+    padding-bottom:2rem;
+    border-bottom:1px solid #ddd;
+}
+
+.timeline-date{
+    min-width:90px;
+    font-size:2rem;
+    font-weight:bold;
+    color:#0b5ea8;
+}
+
+.timeline-content{
+    flex:1;
+}
+
+.timeline-image{
+    width:100%;
+    max-width:420px;
+    border-radius:8px;
+    margin-bottom:1rem;
+}
+
+.timeline-link{
+    display:inline-block;
+    margin-top:1rem;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+
+</style>
+
+</Layout>

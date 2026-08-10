@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const cartes = await getCollection("architecture");
+cartes.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Architecture">
+
+<div class="page-header">
+    <h1>Architecture du PHPI</h1>
+
+    <p>
+        Le <strong>Poste Hybride à Procédés Informatique (PHPI)</strong> est constitué
+        d'une armoire regroupant l'ensemble des équipements électroniques,
+        électriques et électromécaniques assurant le fonctionnement du système.
+    </p>
+
+    <p>
+        Cette section présente d'abord l'armoire dans son ensemble, puis chacun
+        des modules qui la composent.
+    </p>
+</div>
+
+<div class="cards">
+
+{
+    cartes.map((carte) => (
+
+        <a class="card" href={`/architecture/${carte.id}`}>
+
+            <img
+                src={carte.data.hero ?? "/images/photo-a-venir.png"}
+                alt={carte.data.title}
+                class="card-image"
+            />
+
+            <h2>{carte.data.title}</h2>
+
+            <p>{carte.data.description}</p>
+
+        </a>
+
+    ))
+}
+
+</div>
+
+</Layout>

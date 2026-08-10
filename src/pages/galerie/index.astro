@@ -1,0 +1,107 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Galerie photographique">
+
+<div class="page-header">
+    <h1>Galerie photographique</h1>
+
+    <p>
+        Cette galerie présente quelques photographies illustrant
+        le développement du Poste Hybride à Procédés Informatiques (PHPI),
+        depuis les relais NS1 jusqu'à l'armoire PHPI.
+    </p>
+</div>
+
+<h2>Relais NS1</h2>
+
+<div class="gallery">
+
+    <figure>
+        <img src="/images/galerie/NS1P 4.0.4.jpg" alt="NS1P 4.0.4">
+        <figcaption>NS1P 4.0.4</figcaption>
+    </figure>
+
+    <figure>
+        <img src="/images/galerie/NS1 bistable 10.24.10.jpg" alt="NS1 bistable">
+        <figcaption>NS1 bistable 10.24.10</figcaption>
+    </figure>
+
+    <figure>
+        <img src="/images/galerie/Tempo NS1.jpg" alt="Temporisateur NS1">
+        <figcaption>Temporisateur NS1</figcaption>
+    </figure>
+
+    <figure>
+        <img src="/images/galerie/Rupteur NS1.jpg" alt="Rupteur NS1">
+        <figcaption>Rupteur NS1</figcaption>
+    </figure>
+
+</div>
+
+<h2>Cartes électroniques</h2>
+
+<div class="gallery">
+
+    <figure>
+        <img src="/images/galerie/CRIS 24P 8.0.4.jpg" alt="CRIS 24P 8.0.4">
+        <figcaption>CRIS 24P 8.0.4</figcaption>
+    </figure>
+
+    <figure>
+        <img src="/images/galerie/Bistable premiere generation.jpg" alt="Carte bistable">
+        <figcaption>Carte bistable Première génération</figcaption>
+    </figure>
+
+</div>
+
+<h2>Armoire PHPI</h2>
+
+<div class="gallery">
+
+    <figure>
+        <img src="/images/galerie/Armoire PHPI LED.jpg" alt="Armoire PHPI">
+        <figcaption>Armoire PHPI en fonctionnement</figcaption>
+    </figure>
+
+    <figure>
+        <img src="/images/galerie/PHPI et NS1.jpg" alt="PHPI et NS1">
+        <figcaption>PHPI à côté d'une armoire NS1</figcaption>
+    </figure>
+
+</div>
+
+<style>
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:2rem;
+    margin-bottom:3rem;
+}
+
+.gallery figure{
+    margin:0;
+    text-align:center;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.03);
+}
+
+.gallery figcaption{
+    margin-top:.8rem;
+    font-weight:600;
+}
+
+</style>
+
+</Layout>

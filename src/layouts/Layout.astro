@@ -1,0 +1,58 @@
+---
+import "../styles/global.css";
+
+interface Props {
+    title?: string;
+}
+
+const { title = "PHPI" } = Astro.props;
+---
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>{title}</title>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="logo">
+        <a href="/">PHPI</a>
+    </div>
+
+    <nav class="main-nav">
+        <a href="/">Accueil</a>
+        <a href="/historique">Historique</a>
+        <a href="/architecture">Architecture</a>
+        <a href="/essais">Essais</a>
+        <a href="/galerie">Galerie</a>
+        <a href="/contact">Contact</a>
+    </nav>
+
+</header>
+
+<main>
+
+<slot />
+
+</main>
+
+<footer>
+
+<p>PHPI - Mémoire technique</p>
+
+</footer>
+
+</body>
+
+</html>

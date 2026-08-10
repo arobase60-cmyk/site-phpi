@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const cartes = await getCollection("architecture");
+
+  return cartes.map((carte) => ({
+    params: { slug: carte.id },
+    props: { carte },
+  }));
+}
+
+const { carte } = Astro.props;
+const { Content } = await render(carte);
+
+const cartes = await getCollection("architecture");
+cartes.sort((a, b) => a.data.order - b.data.order);
+
+const index = cartes.findIndex(c => c.id === carte.id);
+
+const precedent = index > 0 ? cartes[index - 1] : null;
+const suivant = index < cartes.length - 1 ? cartes[index + 1] : null;
+---
+
+<Layout title={carte.data.title}>
+
+<p>
+  <a href="/architecture">← Retour à l'architecture</a>
+</p>
+
+<h1>{carte.data.title}</h1>
+
+<img
+  src={carte.data.hero ?? "/images/photo-a-venir.png"}
+  alt={carte.data.title}
+  class="fiche-image"
+/>
+
+<div class="fiche">
+
+  <Content />
+
+</div>
+
+<nav class="fiche-nav">
+
+  {
+    precedent
+      ? <a href={`/architecture/${precedent.id}`}>← {precedent.data.title}</a>
+      : <span></span>
+  }
+
+  {
+    suivant
+      ? <a href={`/architecture/${suivant.id}`}>{suivant.data.title} →</a>
+      : <span></span>
+  }
+
+</nav>
+
+</Layout>

@@ -1,0 +1,132 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="PHPI">
+
+<section class="hero">
+
+    <img src="/images/hero.jpg" alt="Voies ferrées" class="hero-image" />
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <h1>PHPI</h1>
+
+        <p>
+            Documentation technique consacrée au Poste Hybride à Prodédés Informatiques
+        </p>
+
+        <a href="/historique" class="hero-button">
+            Commencer la visite →
+        </a>
+
+    </div>
+
+</section>
+
+<h2>Explorer la documentation</h2>
+
+<div class="accueil-grid">
+
+<a class="accueil-card" href="/historique">
+<h2>📖 Historique</h2>
+<p>L'évolution de la signalisation ferroviaire.</p>
+</a>
+
+<a class="accueil-card" href="/architecture">
+<h2>🏗️ Architecture</h2>
+<p>Organisation générale et documentation technique.</p>
+</a>
+
+<a class="accueil-card" href="/essais">
+<h2>🧪 Essais</h2>
+<p>Expérimentations, mesures et comptes rendus.</p>
+</a>
+
+<a class="accueil-card" href="/galerie">
+<h2>🖼️ Galerie</h2>
+<p>Photographies et illustrations.</p>
+</a>
+
+<a class="accueil-card" href="/contact">
+<h2>✉️ Contact</h2>
+<p>Informations et échanges.</p>
+</a>
+
+</div>
+<style>
+.hero{
+    background:linear-gradient(135deg,#0b5ea8,#1976d2);
+    color:white;
+    text-align:center;
+    padding:5rem 2rem;
+    border-radius:12px;
+    margin-bottom:3rem;
+}
+
+.hero h1{
+    font-size:3.5rem;
+    margin-bottom:1rem;
+}
+
+.hero p{
+    font-size:1.2rem;
+    max-width:700px;
+    margin:auto;
+    margin-bottom:2rem;
+}
+
+.hero-button{
+    display:inline-block;
+    background:white;
+    color:#0b5ea8;
+    padding:0.9rem 1.6rem;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.hero-button:hover{
+    background:#f3f3f3;
+}
+
+.accueil-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:2rem;
+    margin-top:2rem;
+}
+
+.accueil-card{
+    display:block;
+    background:rgb(219, 218, 222);
+    padding:2rem;
+    border-radius:10px;
+    text-decoration:none;
+    color:#222;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+    transition:.25s;
+}
+
+.accueil-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 18px rgba(0,0,0,.18);
+}
+
+.accueil-card h2{
+    color:#0b5ea8;
+    margin-bottom:.8rem;
+}
+
+.accueil-card p{
+    margin:0;
+}
+
+h2{
+    margin-top:3rem;
+    color:#0b5ea8;
+}
+</style>
+</Layout>
