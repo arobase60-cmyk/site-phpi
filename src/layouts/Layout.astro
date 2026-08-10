@@ -2,23 +2,23 @@
 import "../styles/global.css";
 
 interface Props {
-    title?: string;
+  title?: string;
 }
 
-const { title = "PHPI" } = Astro.props;
+const { title = "PHPI - Documentation technique" } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
 
-<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>{title}</title>
+    <title>{title}</title>
 
 </head>
 
@@ -31,25 +31,36 @@ const { title = "PHPI" } = Astro.props;
     </div>
 
     <nav class="main-nav">
-        <a href="/">Accueil</a>
-        <a href="/historique">Historique</a>
-        <a href="/architecture">Architecture</a>
-        <a href="/essais">Essais</a>
-        <a href="/galerie">Galerie</a>
-        <a href="/contact">Contact</a>
+
+       <a href={base}>Accueil</a>
+
+<a href={`${base}historique`}>Historique</a>
+
+<a href={`${base}architecture`}>Architecture</a>
+
+<a href={`${base}essais`}>Essais</a>
+
+<a href={`${base}galerie`}>Galerie</a>
+
+<a href={`${base}contact`}>Contact</a>
+
     </nav>
 
 </header>
 
 <main>
 
-<slot />
+    <slot />
 
 </main>
 
 <footer>
 
-<p>PHPI - Mémoire technique</p>
+    <p><strong>PHPI</strong></p>
+
+    <p>Documentation technique du Poste Hydraulique à Pupitre Individuel</p>
+
+    <p>Projet de sauvegarde patrimoniale</p>
 
 </footer>
 
