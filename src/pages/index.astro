@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="PHPI">
 
 <section class="hero">
 
-    <img src="/images/hero.jpg" alt="Voies ferrées" class="hero-image" />
+    <img src="${base}/images/hero.jpg" alt="Voies ferrées" class="hero-image" />
 
     <div class="hero-overlay"></div>
 
@@ -18,7 +19,7 @@ import Layout from "../layouts/Layout.astro";
             Documentation technique consacrée au Poste Hybride à Prodédés Informatiques
         </p>
 
-        <a href="/historique" class="hero-button">
+        <a href={`${base}/historique`} class="hero-button">
             Commencer la visite →
         </a>
 
@@ -35,7 +36,7 @@ import Layout from "../layouts/Layout.astro";
 <p>L'évolution de la signalisation ferroviaire.</p>
 </a>
 
-<a class="accueil-card" href="/architecture">
+<a class="accueil-card" href="${base}/architecture">
 <h2>🏗️ Architecture</h2>
 <p>Organisation générale et documentation technique.</p>
 </a>
@@ -45,12 +46,12 @@ import Layout from "../layouts/Layout.astro";
 <p>Expérimentations, mesures et comptes rendus.</p>
 </a>
 
-<a class="accueil-card" href="/galerie">
+<a class="accueil-card" href="${base}/galerie">
 <h2>🖼️ Galerie</h2>
 <p>Photographies et illustrations.</p>
 </a>
 
-<a class="accueil-card" href="/contact">
+<a class="accueil-card" href="${base}/contact">
 <h2>✉️ Contact</h2>
 <p>Informations et échanges.</p>
 </a>
