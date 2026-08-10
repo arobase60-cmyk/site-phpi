@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-
+const base = import.meta.env.BASE_URL;
 export async function getStaticPaths() {
   const cartes = await getCollection("architecture");
 
@@ -12,6 +12,9 @@ export async function getStaticPaths() {
 }
 
 const { carte } = Astro.props;
+console.log("ID :", carte.id);
+console.log("Titre :", carte.data.title);
+
 const { Content } = await render(carte);
 
 const cartes = await getCollection("architecture");
@@ -26,7 +29,7 @@ const suivant = index < cartes.length - 1 ? cartes[index + 1] : null;
 <Layout title={carte.data.title}>
 
 <p>
-  <a href="/architecture">← Retour à l'architecture</a>
+  <a href={`${base}/architecture`}>← Retour à l'architecture</a>
 </p>
 
 <h1>{carte.data.title}</h1>
@@ -39,7 +42,10 @@ const suivant = index < cartes.length - 1 ? cartes[index + 1] : null;
 
 <div class="fiche">
 
-  <Content />
+  <h2>TEST AVANT</h2>
+
+<pre>{JSON.stringify(carte.data, null, 2)}</pre>
+<h2>TEST APRÈS</h2>
 
 </div>
 
@@ -47,13 +53,13 @@ const suivant = index < cartes.length - 1 ? cartes[index + 1] : null;
 
   {
     precedent
-      ? <a href={`/architecture/${precedent.id}`}>← {precedent.data.title}</a>
+      ? <a href={`{base}/architecture/${precedent.id}`}>← {precedent.data.title}</a>
       : <span></span>
   }
 
   {
     suivant
-      ? <a href={`/architecture/${suivant.id}`}>{suivant.data.title} →</a>
+      ? <a href={`{base}/architecture/${suivant.id}`}>{suivant.data.title} →</a>
       : <span></span>
   }
 

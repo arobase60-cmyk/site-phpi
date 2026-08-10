@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-
+const base = import.meta.env.BASE_URL;
 const evenements = await getCollection("historique");
 evenements.sort((a, b) => a.data.order - b.data.order);
 ---
@@ -35,7 +35,7 @@ evenements.sort((a, b) => a.data.order - b.data.order);
           <h2>{event.data.title}</h2>
 
           
-          <a href={`/historique/${event.id}`} class="timeline-link">
+          <a href={`${base}/historique/${event.id}`} class="timeline-link">
             Lire la suite →
           </a>
 
