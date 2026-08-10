@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Galerie photographique">
@@ -19,22 +20,22 @@ import Layout from "../../layouts/Layout.astro";
 <div class="gallery">
 
     <figure>
-        <img src="/images/galerie/NS1P 4.0.4.jpg" alt="NS1P 4.0.4">
+        <img src="${base}/images/galerie/NS1P 4.0.4.jpg" alt="NS1P 4.0.4">
         <figcaption>NS1P 4.0.4</figcaption>
     </figure>
 
     <figure>
-        <img src="/images/galerie/NS1 bistable 10.24.10.jpg" alt="NS1 bistable">
+        <img src="${base}/images/galerie/NS1 bistable 10.24.10.jpg" alt="NS1 bistable">
         <figcaption>NS1 bistable 10.24.10</figcaption>
     </figure>
 
     <figure>
-        <img src="/images/galerie/Tempo NS1.jpg" alt="Temporisateur NS1">
+        <img src="${base}/images/galerie/Tempo NS1.jpg" alt="Temporisateur NS1">
         <figcaption>Temporisateur NS1</figcaption>
     </figure>
 
     <figure>
-        <img src="/images/galerie/Rupteur NS1.jpg" alt="Rupteur NS1">
+        <img src="${base}/images/galerie/Rupteur NS1.jpg" alt="Rupteur NS1">
         <figcaption>Rupteur NS1</figcaption>
     </figure>
 
@@ -45,12 +46,12 @@ import Layout from "../../layouts/Layout.astro";
 <div class="gallery">
 
     <figure>
-        <img src="/images/galerie/CRIS 24P 8.0.4.jpg" alt="CRIS 24P 8.0.4">
+        <img src="${base}/images/galerie/CRIS 24P 8.0.4.jpg" alt="CRIS 24P 8.0.4">
         <figcaption>CRIS 24P 8.0.4</figcaption>
     </figure>
 
     <figure>
-        <img src="/images/galerie/Bistable premiere generation.jpg" alt="Carte bistable">
+        <img src="${base}/images/galerie/Bistable premiere generation.jpg" alt="Carte bistable">
         <figcaption>Carte bistable Première génération</figcaption>
     </figure>
 
@@ -61,12 +62,12 @@ import Layout from "../../layouts/Layout.astro";
 <div class="gallery">
 
     <figure>
-        <img src="/images/galerie/Armoire PHPI LED.jpg" alt="Armoire PHPI">
+        <img src="${base}/images/galerie/Armoire PHPI LED.jpg" alt="Armoire PHPI">
         <figcaption>Armoire PHPI en fonctionnement</figcaption>
     </figure>
 
     <figure>
-        <img src="/images/galerie/PHPI et NS1.jpg" alt="PHPI et NS1">
+        <img src="${base}/images/galerie/PHPI et NS1.jpg" alt="PHPI et NS1">
         <figcaption>PHPI à côté d'une armoire NS1</figcaption>
     </figure>
 

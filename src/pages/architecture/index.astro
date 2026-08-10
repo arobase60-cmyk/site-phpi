@@ -31,7 +31,7 @@ cartes.sort((a, b) => a.data.order - b.data.order);
         <a class="card" href={`${base}/architecture/${carte.id}`}>
 
             <img
-                src={carte.data.hero ?? "/images/photo-a-venir.png"}
+                src={carte.data.hero ?? "${base}/images/photo-a-venir.png"}
                 alt={carte.data.title}
                 class="card-image"
             />
