@@ -3,7 +3,7 @@ title: "Essais fonctionnels"
 description: "Validation des fonctions du Poste Hybride à Procédés Informatiques."
 section: "Essais"
 order: 2
-hero: "/images/phpi.jpg"
+hero: "images/phpi.jpg"
 ---
 
 # Essais fonctionnels

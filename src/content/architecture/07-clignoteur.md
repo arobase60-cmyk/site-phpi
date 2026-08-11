@@ -3,7 +3,7 @@ title: "Clignoteur"
 description: "Clignoteur du système PHPI."
 section: "Architecture"
 order: 7
-hero: "/images/architecture/clignoteur.jpg"
+
 ---
 
 ## Description

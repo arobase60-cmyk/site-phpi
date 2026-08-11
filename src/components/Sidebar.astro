@@ -3,35 +3,38 @@ interface Props {
   articles: any[];
   titre: string;
   baseUrl: string;
-  actif: string;
+  actif?: string;
 }
 
 const { articles, titre, baseUrl, actif } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <aside class="sidebar">
 
-<h3>{titre}</h3>
+    <h3>{titre}</h3>
 
-<ul>
+    <ul>
 
-{
-  articles.map((article) => (
+        {
+            articles.map((article) => (
 
-    <li>
+                <li>
 
-      <a
-        href={`/${baseUrl}/${article.id}`}
-        class={article.id === actif ? "active" : ""}
-      >
-        {article.data.title}
-      </a>
+                    <a
+                        href={base + baseUrl + "/" + article.id}
+                        class={article.id === actif ? "active" : ""}
+                    >
 
-    </li>
+                        {article.data.title}
 
-  ))
-}
+                    </a>
 
-</ul>
+                </li>
+
+            ))
+        }
+
+    </ul>
 
 </aside>

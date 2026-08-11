@@ -254,83 +254,68 @@ footer{
    GRILLES
 ========================================================== */
 
-.cards{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
-    gap:30px;
-
-    margin-top:40px;
-
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
 }
 
 /* ==========================================================
    CARTES
 ========================================================== */
 
-.card{
-
-    display:block;
-
-    background:white;
-
-    color:inherit;
-
-    text-decoration:none;
-
-    border:1px solid var(--bordure);
-
-    border-radius:10px;
-
-    overflow:hidden;
-
-    box-shadow:var(--ombre);
-
-    transition:.25s;
-
+.card {
+  display: block;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
 }
 
-.card img{
 
-    width:100%;
-
-    height:180px;
-
-    object-fit:cover;
-
-    background:#ececec;
-
+.card-image,
+.card-image-container img,
+.card img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
 
-.card h2{
-
-    margin:18px;
-
-    color:var(--bleu);
-
-    font-size:1.3rem;
-
+/* Cartes sans conteneur d'image */
+.card > img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
 }
 
-.card p{
-
-    margin:0 18px 20px;
-
-    color:#555;
-
-    text-align:left;
-
+.card h2 {
+  margin: 0 0 14px;
+  color: #1265a8;
+  font-size: 1.45rem;
 }
+.card-link {
+  display: inline-block;
+  color: #1265a8;
+  font-weight: 600;
+}
+.card p {
+  margin: 0 0 20px;
+  line-height: 1.6;
+  color: #444;
+}
+
+
 /* ==========================================================
    DOCUMENTATION
 ========================================================== */
@@ -1387,4 +1372,60 @@ h2{
     object-fit: contain;
     display: block;
     border-radius: 10px 10px 0 0;
+}
+.card > img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+/* =========================
+   Contenu des fiches
+   ========================= */
+
+.fiche {
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 400;
+  color: #222;
+}
+
+.fiche p {
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+}
+
+.fiche ul,
+.fiche ol {
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.fiche li {
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.fiche h2 {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.fiche h3 {
+  font-size: 1.3rem;
+  line-height: 1.4;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.fiche strong {
+  font-weight: 700;
 }

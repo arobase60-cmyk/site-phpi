@@ -6,7 +6,9 @@ interface Props {
 }
 
 const { title = "PHPI - Documentation technique" } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + "/";
 ---
 
 <!DOCTYPE html>
@@ -32,19 +34,19 @@ const base = import.meta.env.BASE_URL;
 
     <nav class="main-nav">
 
-       <a href={base}>Accueil</a>
+  <a href={base}>Accueil</a>
 
-<a href={`${base}/historique`}>Historique</a>
+  <a href={base + "historique/"}>Historique</a>
 
-<a href={`${base}/architecture`}>Architecture</a>
+  <a href={base + "architecture/"}>Architecture</a>
 
-<a href={`${base}/essais`}>Essais</a>
+  <a href={base + "essais/"}>Essais</a>
 
-<a href={`${base}/galerie`}>Galerie</a>
+  <a href={base + "galerie/"}>Galerie</a>
 
-<a href={`${base}/contact`}>Contact</a>
+  <a href={base + "contact/"}>Contact</a>
 
-    </nav>
+</nav>
 
 </header>
 
@@ -58,7 +60,7 @@ const base = import.meta.env.BASE_URL;
 
     <p><strong>PHPI</strong></p>
 
-    <p>Documentation technique du Poste Hydraulique à Pupitre Individuel</p>
+    <p>Documentation technique du Poste Hybride à Procédés Informatiques</p>
 
     <p>Projet de sauvegarde patrimoniale</p>
 

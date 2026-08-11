@@ -3,7 +3,7 @@ title: "Rupteur"
 description: "Module rupteur du système PHPI."
 section: "Architecture"
 order: 9
-hero: "/images/architecture/rupteur.jpg"
+
 ---
 
 ## Description

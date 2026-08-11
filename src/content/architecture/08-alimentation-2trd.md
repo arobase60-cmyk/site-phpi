@@ -3,7 +3,7 @@ title: "Alimentation 2TRD"
 description: "Module d'alimentation 2TRD du système PHPI."
 section: "Architecture"
 order: 8
-hero: "/images/architecture/alimentation-2trd.jpg"
+
 ---
 
 ## Description

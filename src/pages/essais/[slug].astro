@@ -1,62 +1,274 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+
 const base = import.meta.env.BASE_URL;
+
+/*
+ * On garantit que BASE_URL se termine par /
+ *
+ * Exemple :
+ * /site-phpi/
+ */
+const siteBase = base.endsWith("/") ? base : `${base}/`;
+
+
 export async function getStaticPaths() {
   const essais = await getCollection("essais");
 
+  essais.sort((a, b) => a.data.order - b.data.order);
+
   return essais.map((essai) => ({
-    params: { slug: essai.id },
-    props: { essai },
+    params: {
+      slug: essai.id,
+    },
+    props: {
+      essai,
+    },
   }));
 }
 
+
 const { essai } = Astro.props;
+
 const { Content } = await render(essai);
 
+
 const essais = await getCollection("essais");
+
 essais.sort((a, b) => a.data.order - b.data.order);
 
-const index = essais.findIndex(e => e.id === essai.id);
 
-const precedent = index > 0 ? essais[index - 1] : null;
-const suivant = index < essais.length - 1 ? essais[index + 1] : null;
+const index = essais.findIndex((e) => e.id === essai.id);
+
+const precedent = index > 0
+  ? essais[index - 1]
+  : null;
+
+const suivant = index < essais.length - 1
+  ? essais[index + 1]
+  : null;
 ---
+
 
 <Layout title={essai.data.title}>
 
-<p>
-  <a href={`${base}/essais`}>← Retour aux essais</a>
-</p>
+  <main class="fiche-page">
 
-<h1>{essai.data.title}</h1>
+    <!-- =========================
+         RETOUR AUX ESSAIS
+         ========================= -->
 
-<img
-  src={essai.data.hero ?? "${base}/images/photo-a-venir.png"}
-  alt={essai.data.title}
-  class="fiche-image"
-/>
+    <p class="back-link">
+      <a href={`${siteBase}essais/`}>
+        ← Retour aux essais
+      </a>
+    </p>
 
-<div class="fiche">
 
-  <Content />
+    <!-- =========================
+         TITRE
+         ========================= -->
 
-</div>
+    <h1>{essai.data.title}</h1>
 
-<nav class="fiche-nav">
 
-  {
-    precedent
-      ? <a href={`${base}/essais/${precedent.id}`}>← {precedent.data.title}</a>
-      : <span></span>
-  }
+    <!-- =========================
+         IMAGE
+         ========================= -->
 
-  {
-    suivant
-      ? <a href={`${base}/essais/${suivant.id}`}>{suivant.data.title} →</a>
-      : <span></span>
-  }
+    <img
+      src={
+        essai.data.hero
+          ? (essai.data.hero.startsWith("/")
+              ? siteBase + essai.data.hero.replace(/^\/+/, "")
+              : essai.data.hero)
+          : `${siteBase}images/photo-a-venir.png`
+      }
+      alt={essai.data.title}
+      class="fiche-image"
+    />
 
-</nav>
+
+    <!-- =========================
+         CONTENU
+         ========================= -->
+
+    <div class="fiche">
+
+      <Content />
+
+    </div>
+
+
+    <!-- =========================
+         NAVIGATION ENTRE LES ESSAIS
+         ========================= -->
+
+    <nav class="fiche-nav">
+
+      {
+        precedent ? (
+          <a href={`${siteBase}essais/${precedent.id}/`}>
+            ← {precedent.data.title}
+          </a>
+        ) : (
+          <span></span>
+        )
+      }
+
+
+      {
+        suivant ? (
+          <a href={`${siteBase}essais/${suivant.id}/`}>
+            {suivant.data.title} →
+          </a>
+        ) : (
+          <span></span>
+        )
+      }
+
+    </nav>
+
+  </main>
 
 </Layout>
+
+
+<style>
+
+.fiche-page {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 30px;
+}
+
+
+/* =========================
+   RETOUR
+   ========================= */
+
+.back-link {
+  margin-bottom: 30px;
+}
+
+.back-link a {
+  color: #075ca8;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   TITRE
+   ========================= */
+
+h1 {
+  color: #1268ad;
+
+  font-size: 2.3rem;
+
+  margin-bottom: 25px;
+
+  padding-bottom: 20px;
+
+  border-bottom: 2px solid #1268ad;
+}
+
+
+/* =========================
+   IMAGE
+   ========================= */
+
+.fiche-image {
+  display: block;
+
+  width: 100%;
+  max-width: 800px;
+
+  height: auto;
+
+  margin: 30px auto 40px;
+
+  border-radius: 8px;
+}
+
+
+/* =========================
+   CONTENU
+   ========================= */
+
+.fiche {
+  line-height: 1.7;
+
+  font-size: 1.05rem;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.fiche-nav {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 30px;
+
+  margin-top: 60px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid #ddd;
+}
+
+.fiche-nav a {
+  color: #075ca8;
+
+  font-weight: bold;
+
+  text-decoration: none;
+}
+
+.fiche-nav a:hover {
+  text-decoration: underline;
+}
+
+.fiche-nav a:last-child {
+  text-align: right;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+  .fiche-page {
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .fiche-nav {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .fiche-nav a:last-child {
+    text-align: left;
+  }
+
+}
+
+</style>

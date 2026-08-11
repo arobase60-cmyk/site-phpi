@@ -3,7 +3,7 @@ title: "Relais bistable"
 description: "Relais bistable du système PHPI."
 section: "Architecture"
 order: 6
-hero: "/images/architecture/relais-bistable.jpg"
+
 ---
 
 ## Description
@@ -11,8 +11,8 @@ hero: "/images/architecture/relais-bistable.jpg"
 Le **relais bistable** est un relais électromécanique capable de conserver sa position après la disparition de la commande électrique.
 
 Contrairement à un relais classique, il ne nécessite pas une alimentation permanente pour maintenir son état. Il change de position uniquement lorsqu'il reçoit une impulsion de commande appropriée.
+la carte Bistable 0.33.0 est une carte double. Elle prend 2 emplacements dans le rack. elle est constituée de 33 contacts Translateurs.
 
-📷 Photo à venir.
 
 ## Rôle
 

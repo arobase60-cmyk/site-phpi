@@ -1,44 +1,73 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+
 const base = import.meta.env.BASE_URL;
+
 const essais = await getCollection("essais");
 essais.sort((a, b) => a.data.order - b.data.order);
+
+function imageUrl(hero: string | undefined) {
+  if (!hero) {
+    return base + "images/photo-a-venir.png";
+  }
+
+  // Image externe
+  if (hero.startsWith("http://") || hero.startsWith("https://")) {
+    return hero;
+  }
+
+  // On enlève les "/" éventuels au début
+  const chemin = hero.replace(/^\/+/, "");
+
+  // Si le chemin commence déjà par images/
+  if (chemin.startsWith("images/")) {
+    return base + chemin;
+  }
+
+  // Sinon on considère que c'est simplement le nom du fichier
+  return base + "images/" + chemin;
+}
 ---
 
 <Layout title="Essais">
 
-<div class="page-header">
+  <div class="page-header">
     <h1>Essais</h1>
 
     <p>
-        Cette rubrique présente les différentes procédures d'essais réalisées
-        lors du développement et de la validation du PHPI.
+      Cette rubrique présente les différentes procédures d'essais réalisées
+      lors du développement et de la validation du PHPI.
     </p>
-</div>
+  </div>
 
-<div class="cards">
+  <div class="cards">
 
-{
-    essais.map((essai) => (
+    {
+      essais.map((essai) => (
+        <a
+          class="card"
+          href={base + "essais/" + essai.id + "/"}
+        >
 
-        <a class="card" href={`${base}/essais/${essai.id}`}>
+          <img
+            src={imageUrl(essai.data.hero)}
+            alt={essai.data.title}
+            class="card-image"
+          />
 
-            <img
-                src={essai.data.hero ?? "${base}/images/photo-a-venir.png"}
-                alt={essai.data.title}
-                class="card-image"
-            />
+          <h2>{essai.data.title}</h2>
 
-            <h2>{essai.data.title}</h2>
+          <p>{essai.data.description}</p>
 
-            <p>{essai.data.description}</p>
+          <span class="card-link">
+            Lire la suite →
+          </span>
 
         </a>
+      ))
+    }
 
-    ))
-}
-
-</div>
+  </div>
 
 </Layout>

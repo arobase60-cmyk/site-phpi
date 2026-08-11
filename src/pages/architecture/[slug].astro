@@ -1,7 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-const base = import.meta.env.BASE_URL;
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith("/") ? rawBase : rawBase + "/";
+
 export async function getStaticPaths() {
   const cartes = await getCollection("architecture");
 
@@ -12,57 +15,65 @@ export async function getStaticPaths() {
 }
 
 const { carte } = Astro.props;
-console.log("ID :", carte.id);
-console.log("Titre :", carte.data.title);
 
 const { Content } = await render(carte);
 
 const cartes = await getCollection("architecture");
+
 cartes.sort((a, b) => a.data.order - b.data.order);
 
-const index = cartes.findIndex(c => c.id === carte.id);
+const index = cartes.findIndex((c) => c.id === carte.id);
 
 const precedent = index > 0 ? cartes[index - 1] : null;
 const suivant = index < cartes.length - 1 ? cartes[index + 1] : null;
+
+const imageUrl = carte.data.hero
+  ? base + carte.data.hero.replace(/^\/+/, "")
+  : base + "images/photo-a-venir.png";
 ---
 
 <Layout title={carte.data.title}>
 
-<p>
-  <a href={`${base}/architecture`}>← Retour à l'architecture</a>
-</p>
+  <p>
+    <a href={base + "architecture/"}>
+      ← Retour à l'architecture
+    </a>
+  </p>
 
-<h1>{carte.data.title}</h1>
+  <h1>{carte.data.title}</h1>
 
-<img
-  src={carte.data.hero ?? "${base}/images/photo-a-venir.png"}
-  alt={carte.data.title}
-  class="fiche-image"
-/>
+  <img
+    src={imageUrl}
+    alt={carte.data.title}
+    class="fiche-image"
+  />
 
-<div class="fiche">
+  <div class="fiche">
+    <Content />
+  </div>
 
-  <h2>TEST AVANT</h2>
+  <nav class="fiche-nav">
 
-<pre>{JSON.stringify(carte.data, null, 2)}</pre>
-<h2>TEST APRÈS</h2>
+    {
+      precedent ? (
+        <a href={base + "architecture/" + precedent.id + "/"}>
+          ← Précédent
+        </a>
+      ) : (
+        <span></span>
+      )
+    }
 
-</div>
+    {
+      suivant ? (
+        <a href={base + "architecture/" + suivant.id + "/" }>
+          Suivant →
+        </a>
+      ) : (
+        <span></span>
+      )
+    }
 
-<nav class="fiche-nav">
-
-  {
-    precedent
-      ? <a href={`${base}/architecture/${precedent.id}`}>← {precedent.data.title}</a>
-      : <span></span>
-  }
-
-  {
-    suivant
-      ? <a href={`${base}/architecture/${suivant.id}`}>{suivant.data.title} →</a>
-      : <span></span>
-  }
-
-</nav>
+  </nav>
 
 </Layout>

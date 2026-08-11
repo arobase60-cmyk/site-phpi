@@ -3,7 +3,7 @@ title: "Armoire PHPI"
 description: "Présentation générale de l'armoire PHPI."
 section: "Architecture"
 order: 1
-hero: "/images/architecture/armoire-phpi.jpg"
+hero: "images/architecture/armoire-phpi.jpg"
 ---
 
 ## Description

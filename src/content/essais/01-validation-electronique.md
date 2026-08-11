@@ -3,7 +3,7 @@ title: "Validation électronique"
 description: "Validation des cartes électroniques du PHPI."
 section: "Essais"
 order: 1
-hero: "/images/oscilloscope.jpg"
+hero: "images/oscilloscope.jpg"
 ---
 
 # Validation électronique
@@ -73,9 +73,10 @@ Dans un premier temps on vérifie les différents temps de temporisation. Dans u
 
 ---
 
-# Temporisateur de chute
+# Temporisateur à la chute
 
-Dans un premier temps on vérifie les différents temps de temporisation. Dans un deuxième temps, du fait que la carte dispose de circuit de protection, on simule une panne et on vérifie le bon fonctionnement des protections. Pour ce test il ne faut pas oublier de limiter le courant de l'alimentation pour ne pas détruire le fusible.
+Les tests sont identiques aux temporisateurs à l'attraction. Mesure des temps et vérification des protections.
+
 ---
 
 # Relais bistable

@@ -3,7 +3,7 @@ title: "Essais système"
 description: "Validation globale du Poste Hybride à Procédés Informatiques."
 section: "Essais"
 order: 3
-hero: "/images/pc.jpg"
+hero: "images/pc.jpg"
 ---
 
 # Essais système

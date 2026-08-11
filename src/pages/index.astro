@@ -1,133 +1,267 @@
 ---
 import Layout from "../layouts/Layout.astro";
-const base = import.meta.env.BASE_URL;
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : import.meta.env.BASE_URL + "/";
 ---
 
 <Layout title="PHPI">
 
-<section class="hero">
+    <section class="hero">
 
-    <img src="${base}/images/hero.jpg" alt="Voies ferrées" class="hero-image" />
+        <img
+            src={base + "images/hero.jpg"}
+            alt="Voies ferrées"
+            class="hero-image"
+        />
 
-    <div class="hero-overlay"></div>
+        <div class="hero-overlay"></div>
 
-    <div class="hero-content">
+        <div class="hero-content">
 
-        <h1>PHPI</h1>
+            <h1>PHPI</h1>
 
-        <p>
-            Documentation technique consacrée au Poste Hybride à Prodédés Informatiques
-        </p>
+            <p>
+                Documentation technique consacrée au Poste Hybride à Procédés
+                Informatiques
+            </p>
 
-        <a href={`${base}/historique`} class="hero-button">
-            Commencer la visite →
+            <a href={base + "historique/"} class="hero-button">
+                Commencer la visite →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <h2>Explorer la documentation</h2>
+
+
+    <div class="accueil-grid">
+
+        <a class="accueil-card" href={base + "historique/"}>
+
+            <h2>📖 Historique</h2>
+
+            <p>
+                L'évolution de la signalisation ferroviaire.
+            </p>
+
+        </a>
+
+
+        <a class="accueil-card" href={base + "architecture/"}>
+
+            <h2>🏗️ Architecture</h2>
+
+            <p>
+                Organisation générale et documentation technique.
+            </p>
+
+        </a>
+
+
+        <a class="accueil-card" href={base + "essais/"}>
+
+            <h2>🧪 Essais</h2>
+
+            <p>
+                Expérimentations, mesures et comptes rendus.
+            </p>
+
+        </a>
+
+
+        <a class="accueil-card" href={base + "galerie/"}>
+
+            <h2>🖼️ Galerie</h2>
+
+            <p>
+                Photographies et illustrations.
+            </p>
+
+        </a>
+
+
+        <a class="accueil-card" href={base + "contact/"}>
+
+            <h2>✉️ Contact</h2>
+
+            <p>
+                Informations et échanges.
+            </p>
+
         </a>
 
     </div>
 
-</section>
 
-<h2>Explorer la documentation</h2>
+    <style>
 
-<div class="accueil-grid">
+        .hero {
+            position: relative;
+            overflow: hidden;
 
-<a class="accueil-card" href="${base}/historique">
-<h2>📖 Historique</h2>
-<p>L'évolution de la signalisation ferroviaire.</p>
-</a>
+            color: white;
+            text-align: center;
 
-<a class="accueil-card" href="${base}/architecture">
-<h2>🏗️ Architecture</h2>
-<p>Organisation générale et documentation technique.</p>
-</a>
+            padding: 5rem 2rem;
 
-<a class="accueil-card" href="${base}/essais">
-<h2>🧪 Essais</h2>
-<p>Expérimentations, mesures et comptes rendus.</p>
-</a>
+            border-radius: 12px;
 
-<a class="accueil-card" href="${base}/galerie">
-<h2>🖼️ Galerie</h2>
-<p>Photographies et illustrations.</p>
-</a>
+            margin-bottom: 3rem;
 
-<a class="accueil-card" href="${base}/contact">
-<h2>✉️ Contact</h2>
-<p>Informations et échanges.</p>
-</a>
+            min-height: 450px;
 
-</div>
-<style>
-.hero{
-    background:linear-gradient(135deg,#0b5ea8,#1976d2);
-    color:white;
-    text-align:center;
-    padding:5rem 2rem;
-    border-radius:12px;
-    margin-bottom:3rem;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.hero h1{
-    font-size:3.5rem;
-    margin-bottom:1rem;
-}
 
-.hero p{
-    font-size:1.2rem;
-    max-width:700px;
-    margin:auto;
-    margin-bottom:2rem;
-}
+        .hero-image {
+            position: absolute;
 
-.hero-button{
-    display:inline-block;
-    background:white;
-    color:#0b5ea8;
-    padding:0.9rem 1.6rem;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-}
+            inset: 0;
 
-.hero-button:hover{
-    background:#f3f3f3;
-}
+            width: 100%;
+            height: 100%;
 
-.accueil-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:2rem;
-    margin-top:2rem;
-}
+            object-fit: cover;
 
-.accueil-card{
-    display:block;
-    background:rgb(219, 218, 222);
-    padding:2rem;
-    border-radius:10px;
-    text-decoration:none;
-    color:#222;
-    box-shadow:0 2px 8px rgba(0,0,0,.12);
-    transition:.25s;
-}
+            z-index: 0;
+        }
 
-.accueil-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 8px 18px rgba(0,0,0,.18);
-}
 
-.accueil-card h2{
-    color:#0b5ea8;
-    margin-bottom:.8rem;
-}
+        .hero-overlay {
+            position: absolute;
 
-.accueil-card p{
-    margin:0;
-}
+            inset: 0;
 
-h2{
-    margin-top:3rem;
-    color:#0b5ea8;
-}
-</style>
+            background: linear-gradient(
+                135deg,
+                rgba(11, 94, 168, 0.85),
+                rgba(25, 118, 210, 0.65)
+            );
+
+            z-index: 1;
+        }
+
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 800px;
+
+            margin: auto;
+        }
+
+
+        .hero h1 {
+            font-size: 3.5rem;
+
+            margin-bottom: 1rem;
+        }
+
+
+        .hero p {
+            font-size: 1.2rem;
+
+            max-width: 700px;
+
+            margin: 0 auto 2rem;
+        }
+
+
+        .hero-button {
+            display: inline-block;
+
+            background: white;
+
+            color: #0b5ea8;
+
+            padding: 0.9rem 1.6rem;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+
+        .hero-button:hover {
+            background: #f3f3f3;
+
+            transform: translateY(-2px);
+        }
+
+
+        .accueil-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 2rem;
+
+            margin-top: 2rem;
+        }
+
+
+        .accueil-card {
+            display: block;
+
+            background: rgb(219, 218, 222);
+
+            padding: 2rem;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            color: #222;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+            transition: 0.25s;
+        }
+
+
+        .accueil-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 8px 18px rgba(0, 0, 0, 0.18);
+        }
+
+
+        .accueil-card h2 {
+            color: #0b5ea8;
+
+            margin-top: 0;
+
+            margin-bottom: 0.8rem;
+        }
+
+
+        .accueil-card p {
+            margin: 0;
+        }
+
+
+        h2 {
+            margin-top: 3rem;
+
+            color: #0b5ea8;
+        }
+
+    </style>
+
 </Layout>

@@ -1,11 +1,13 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+
 const base = import.meta.env.BASE_URL;
-import Sidebar from "../../components/Sidebar.astro";
 
 export async function getStaticPaths() {
   const articles = await getCollection("historique");
+
+  articles.sort((a, b) => a.data.order - b.data.order);
 
   return articles.map((article) => ({
     params: {
@@ -18,39 +20,226 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const articles = await getCollection("historique");
 
+const articles = await getCollection("historique");
 articles.sort((a, b) => a.data.order - b.data.order);
 
 const { Content } = await render(article);
 
-
+/*
+ * On s'assure que BASE_URL se termine bien par /
+ *
+ * Exemple :
+ * /site-phpi/
+ */
+const siteBase = base.endsWith("/") ? base : `${base}/`;
 ---
 
 <Layout title={article.data.title}>
 
-<div class="doc">
+  <div class="doc">
 
-  <Sidebar
-  articles={articles}
-  titre="Historique"
-  baseUrl="historique"
-  actif={article.id}
-/>
+    <!-- =========================
+         MENU HISTORIQUE
+         ========================= -->
+    <aside class="sidebar">
 
-  <main class="content">
-    <h1>{article.data.title}</h1>
-<p class="article-description">
-  {article.data.description}
-</p>
-    <Content />
+      <h2>Historique</h2>
 
-    <p>
-      <a href={`${base}/historique`}>← Retour à l'historique</a>
-    </p>
+      <nav>
+        <ul>
 
-  </main>
+          {
+            articles.map((item) => {
+              const href = `${siteBase}historique/${item.id}/`;
 
-</div>
+              return (
+                <li>
+                  <a
+                    href={href}
+                    class:list={{ active: item.id === article.id }}
+                  >
+                    {item.data.title}
+                  </a>
+                </li>
+              );
+            })
+          }
+
+        </ul>
+      </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         CONTENU DE L'ARTICLE
+         ========================= -->
+    <main class="content">
+
+      <h1>{article.data.title}</h1>
+
+      {
+        article.data.description && (
+          <p class="article-description">
+            {article.data.description}
+          </p>
+        )
+      }
+
+      <Content />
+
+      <p class="back-link">
+        <a href={`${siteBase}historique/`}>
+          ← Retour à l'historique
+        </a>
+      </p>
+
+    </main>
+
+  </div>
 
 </Layout>
+
+
+<style>
+
+.doc {
+  max-width: 1200px;
+  margin: 70px auto;
+  padding: 0 30px;
+
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 70px;
+}
+
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.sidebar {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 25px;
+  background: #f8fafc;
+  align-self: start;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #123f68;
+  font-size: 1.4rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 8px;
+}
+
+.sidebar a {
+  display: block;
+
+  padding: 11px 12px;
+
+  color: #075ca8;
+  text-decoration: none;
+
+  border-radius: 7px;
+
+  line-height: 1.35;
+}
+
+.sidebar a:hover {
+  background: #e8f1fa;
+}
+
+.sidebar a.active {
+  background: #1268ad;
+  color: white;
+  font-weight: bold;
+}
+
+
+/* =========================
+   CONTENU
+   ========================= */
+
+.content {
+  min-width: 0;
+}
+
+.content h1 {
+  margin-top: 0;
+
+  color: #1268ad;
+
+  font-size: 2.2rem;
+
+  padding-bottom: 20px;
+
+  border-bottom: 2px solid #1268ad;
+}
+
+.article-description {
+  margin: 25px 0 40px;
+
+  color: #666;
+
+  font-size: 1.15rem;
+
+  font-style: italic;
+}
+
+.content p {
+  line-height: 1.7;
+}
+
+.back-link {
+  margin-top: 45px;
+}
+
+.back-link a {
+  color: #075ca8;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 800px) {
+
+  .doc {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  .sidebar {
+    width: auto;
+  }
+
+  .content h1 {
+    font-size: 1.8rem;
+  }
+
+}
+
+</style>

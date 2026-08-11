@@ -3,7 +3,7 @@ title: "Temporisateur de chute"
 description: "Temporisateur de chute du système PHPI."
 section: "Architecture"
 order: 5
-hero: "/images/architecture/temporisateur-chute.jpg"
+
 ---
 
 ## Description

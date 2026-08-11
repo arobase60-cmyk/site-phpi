@@ -3,7 +3,7 @@ title: "Temporisateur d'attraction"
 description: "Temporisateur d'attraction du système PHPI."
 section: "Architecture"
 order: 4
-hero: "/images/architecture/temporisateur-attraction.jpg"
+
 ---
 
 ## Description
