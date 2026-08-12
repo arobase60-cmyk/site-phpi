@@ -1,7 +1,12 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+
 export default defineConfig({
   site: 'https://relais-cris-phpi.fr',
   base: '/',
   trailingSlash: 'always',
+
+  integrations: [
+    sitemap()
+  ]
 });
