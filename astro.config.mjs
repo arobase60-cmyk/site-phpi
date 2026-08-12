@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://arobase60-cmyk.github.io',
+  site: 'https://relais-cris-phpi.fr',
   base: '/',
   trailingSlash: 'always',
 });
