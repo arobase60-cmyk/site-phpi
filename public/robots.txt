@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://relais-cris-phpi.fr/sitemap-index.xml
