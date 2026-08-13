@@ -74,9 +74,9 @@ Dans un premier temps on vérifie les différents temps de temporisation. Dans u
 ---
 
 # Temporisateur à la chute
-
+<p>
 Les tests sont identiques aux temporisateurs à l'attraction. Mesure des temps et vérification des protections.
-
+</p>
 ---
 
 # Relais bistable
