@@ -97,8 +97,9 @@ Pour la carte clignoteur on vérifie la fréquence de clignotement.
 ---
 
 # Alimentation 2TRD
-
+<p>
 Pour la alimentation 2TRD on vérifie que la tension de sortie est d'environ 24 Volts.
+</p>
 ---
 
 # Rupteur
